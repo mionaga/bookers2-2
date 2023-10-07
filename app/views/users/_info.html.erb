@@ -1,17 +1,17 @@
 <h3>User info</h3>
-<%= image_tag @user.get_profile_image(100,100) %>
+<%= image_tag user.get_profile_image(100,100) %>
 <table>
   <tr>
     <th>name</th>
-    <th><%= @user.name %></th>
+    <th><%= user.name %></th>
   </tr>
   <tr>
     <th>introduction</th>
-    <th><%= @user.introduction %></th>
+    <th><%= user.introduction %></th>
   </tr>
   <tr>
     <th>
-    <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+    <%= link_to "プロフィール編集", edit_user_path(user.id) %>
     </th>
   </tr>
 </table>
