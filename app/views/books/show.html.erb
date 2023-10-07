@@ -1,0 +1,18 @@
+<%= render 'create-book', book: @new_book %>
+
+<h1>Book detail</h1>
+<table>
+  <tr>
+    <td>
+      <% link_to user_path(@user_id) do %>
+        <%= image_tag @book.user.get_profile_image(100,100) %>
+        <%= @book.user.name %>
+      <% end %>
+    </td>
+    <td><%= @book.title %></td>
+    <td><%= @book.body %></td>
+    <% if @book.user == current_user %>
+      <%= link_to "destroy", book_path(@book), method: :delete %>
+    <% end %>  
+  </tr>
+</table>
