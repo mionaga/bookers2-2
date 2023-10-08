@@ -1,8 +1,12 @@
 <h3>New book</h3>
+
+
+
 <%= form_with model: book do |f| %>
+  <%= render 'layouts/errors', obj: @book %>
   <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit %>
-<% end %>
+    <%= f.text_field :title %>
+    <h4>Opinion</h4>
+    <%= f.text_area :body %>
+    <%= f.submit %>
+   <% end %>
