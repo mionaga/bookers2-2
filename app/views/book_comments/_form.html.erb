@@ -1,0 +1,7 @@
+ <!--配列でインスタンス変数を二つ指定：コメントはbookに結びついたbook_commentなので２つ用意しなければいけない-->
+<div>
+  <%= form_with model: [book, book_comment], local: false do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "w-100", id: "comment_textarea" %>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
