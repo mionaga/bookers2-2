@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  
+  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
   
   validates:name, uniqueness:true, length:{ minimum: 2,maximum:20 }
   validates:introduction, length:{ maximum:50 }
@@ -20,4 +25,19 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  #指定したユーザーをフォローする
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
+  end
+  
+  #指定したユーザーのフォローを解除する
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
+  end
+  
+  #指定したユーザーをフォローしているかどうかを判定
+  def following?(user)
+    followings.include?(user)
+  end  
+    
 end
